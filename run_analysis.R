@@ -1,18 +1,18 @@
-## You can Set the primary directory containing the zipped data set
+# You can identify the working directory to contain the zipped data set
 # setwd(file.path("C:\\Users\\Dov\\Documents\\Personal", 
 #  "Coursera\\GettingAndCleaningData\\CleaningDataProject")
 
-## Download and unzip the compressed dataset
+#  Download and unzip the compressed dataset
 url1 <- "https://d396qusza40orc.cloudfront.net/getdata%2Fprojectfiles%2FUCI%20HAR%20Dataset.zip"
 print(paste("Downloading the dataset:", Sys.time()))
 download.file(url1, "smartphone-data.zip", method="curl")
 unzip("smartphone-data.zip")
 
-## Reading in X, y, subject data
-vals <- c("test", "train") # loop through test and training data
+#  Reading in X, y, subject data
+vals <- c("test", "train")  # loop through test and training data
 smartphone <- list()
 for (val in vals){
-  input.types <- c("X", "y", "subject") # loop through the three data files
+  input.types <- c("X", "y", "subject")  # loop through the three data files
   dfs <- list()
   for (type1 in input.types){
     file1 <- paste0(type1, "_", val, ".txt")
@@ -20,7 +20,7 @@ for (val in vals){
     dfs[[type1]] <- read.table(file.path("UCI HAR Dataset", val, file1))
   }
   print(paste("Joining", val, "files:", Sys.time()))
-  smartphone[[val]] <- cbind(dfs$X, dfs$subject, dfs$y) #
+  smartphone[[val]] <- cbind(dfs$X, dfs$subject, dfs$y)
 }
 rm(dfs)
 print(paste("Stacking the test and train data", Sys.time()))
@@ -43,6 +43,7 @@ names(smartphone.df) <- gsub("([a-z])([A-Z])", "\\1.\\2", names(smartphone.df))
 names(smartphone.df) <- tolower(names(smartphone.df))
 names(smartphone.df) <- gsub("(.+)[.](x|y|z)[.](.+)", "\\1.\\3.\\2", 
                              names(smartphone.df))
+
 # Assigning descriptive activities
 activity.df <- read.table("UCI HAR Dataset\\activity_labels.txt", 
                           stringsAsFactors=FALSE)
