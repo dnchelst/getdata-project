@@ -36,9 +36,13 @@ smartphone.df <- smartphone.df[, c(mean.std.columns$V1, 562, 563)]
 
 # Assigning headers and cleans them a bit
 names(smartphone.df) <- c(mean.std.columns$V2, "subject", "activity.code")
-names(smartphone.df) <- gsub("[-]", ".", names(smartphone.df))
+names(smartphone.df) <- gsub("[-,()]+", ".", names(smartphone.df))
 names(smartphone.df) <- gsub("\\(\\)", "", names(smartphone.df))
-
+names(smartphone.df) <- gsub("[.]+$", "", names(smartphone.df))
+names(smartphone.df) <- gsub("([a-z])([A-Z])", "\\1.\\2", names(smartphone.df))
+names(smartphone.df) <- tolower(names(smartphone.df))
+names(smartphone.df) <- gsub("(.+)[.](x|y|z)[.](.+)", "\\1.\\3.\\2", 
+                             names(smartphone.df))
 # Assigning descriptive activities
 activity.df <- read.table("UCI HAR Dataset\\activity_labels.txt", 
                           stringsAsFactors=FALSE)
