@@ -1,6 +1,3 @@
-# load libraries
-library(dplyr)
-
 ## You can Set the primary directory containing the zipped data set
 # setwd(file.path("C:\\Users\\Dov\\Documents\\Personal", 
 #  "Coursera\\GettingAndCleaningData\\CleaningDataProject")
@@ -30,10 +27,10 @@ print(paste("Stacking the test and train data", Sys.time()))
 smartphone.df <- rbind(smartphone$train, smartphone$test) 
 rm(smartphone)
 
-# Identifying mean and standard deviation columns and assign headers
+# Identifying mean and standard deviation columns and assign column names
 measurement.labels <- read.table("UCI HAR Dataset\\features.txt", 
                                  stringsAsFactors=FALSE)
-mean.std.columns <- filter(measurement.labels, 
+mean.std.columns <- subset(measurement.labels, 
                            grepl("mean|std", V2, ignore.case=TRUE))
 smartphone.df <- smartphone.df[, c(mean.std.columns$V1, 562, 563)]
 
