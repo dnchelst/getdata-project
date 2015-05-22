@@ -1,5 +1,5 @@
-# Coursera: Getting and Cleaning Data: Course Project
-Materials for Coursera Getting and Cleaning Data Course Project
+### Coursera: Getting and Cleaning Data: Course Project
+
 
 This repository contains all the necessary files required to complete this 
 project:  
