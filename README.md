@@ -12,14 +12,11 @@ variables were chosen and how the resulting data is "tidy"
 
 Here are a few additional noteworthy points when running the script:  
 
-* It requires the __dplyr__ package. It will not check if the package is 
-installed.   
 * You can specify the location of the working directory where the original data 
-is located.root directory. If you don't mind where the data resides, just leave 
-it alone. 
+is located. If you don't mind where the data resides, just leave it alone. 
 * The script actually downloads the raw data, unzips it, and then processes it.  
 * It assumes that after the archive is uncompressed, its directory structure is 
-preserved.  
+preserved.
 * To be descriptive, the script prints some descriptions as it loads and 
 combines the raw data files. As these files were large, I wanted to track the 
 elapsed time for these steps. 
